@@ -28,7 +28,7 @@ pipeline:
                   identifier: Build
                   spec:
                     connectorRef: Plugins_Docker_Hub_Connector
-                    image: golang
+                    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
                     shell: Sh
                     command: |-
                       go build
@@ -56,7 +56,7 @@ pipeline:
                       identifier: Build_Linux_binary
                       spec:
                         connectorRef: Plugins_Docker_Hub_Connector
-                        image: golang:1.21
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
                         shell: Sh
                         command: |-
                           # force go modules
@@ -129,7 +129,7 @@ pipeline:
                       identifier: Build_Linux_binary
                       spec:
                         connectorRef: Plugins_Docker_Hub_Connector
-                        image: golang:1.21
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
                         shell: Sh
                         command: |-
                           # force go modules
