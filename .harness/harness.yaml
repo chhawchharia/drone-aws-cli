@@ -28,7 +28,7 @@ pipeline:
                   identifier: Build
                   spec:
                     connectorRef: HHI_Public_Images
-                    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                     shell: Sh
                     command: |-
                       go build
@@ -56,7 +56,7 @@ pipeline:
                       identifier: Build_Linux_binary
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -79,6 +79,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           base_image_registry: harness0.harness.io
                           base_image_username: <+secrets.getValue("harness0HARUsername")>
                           base_image_password: <+secrets.getValue("harness0HARPAT")>
@@ -97,6 +99,10 @@ pipeline:
                       name: Linux AMD64
                       identifier: Linux_AMD64
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         baseImageConnectorRefs:
                           - HHI_Public_Images
                         connectorRef: Plugins_Docker_Hub_Connector
@@ -134,7 +140,7 @@ pipeline:
                       identifier: Build_Linux_binary
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -157,6 +163,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           base_image_registry: harness0.harness.io
                           base_image_username: <+secrets.getValue("harness0HARUsername")>
                           base_image_password: <+secrets.getValue("harness0HARPAT")>
@@ -175,6 +183,10 @@ pipeline:
                       name: Linux ARM64
                       identifier: Linux_ARM64
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         baseImageConnectorRefs:
                           - HHI_Public_Images
                         connectorRef: Plugins_Docker_Hub_Connector
